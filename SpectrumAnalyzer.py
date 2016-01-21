@@ -54,7 +54,7 @@ def calcFreqLevels(data, cs, sr, nb, factor, freq, weighting):
     return matrix
 
 def main():
-    global FPSCLOCK, FPS, DISPLAYSURF, SCREEN_WIDTH, SCREEN_HEIGHT, CHUNK_SIZE, MIN_FREQ, MAX_FREQ
+    global DISPLAYSURF, SCREEN_WIDTH, SCREEN_HEIGHT, CHUNK_SIZE, MIN_FREQ, MAX_FREQ
     audiofilename = sys.argv[1]
     _filename, filetype = os.path.splitext(audiofilename)
     SCREEN_HEIGHT = 480
@@ -63,8 +63,6 @@ def main():
     MIN_FREQ = 200
     MAX_FREQ = 20000
     pygame.init()
-    FPSCLOCK = pygame.time.Clock()
-    FPS = 30
     DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
     numbars = 32
     factor = 2.0
@@ -121,7 +119,6 @@ def main():
         for i in xrange(numbars):
             pygame.draw.rect(DISPLAYSURF, (255, 255, 255), (SCREEN_WIDTH/numbars * i, SCREEN_HEIGHT - (scaled_freqs[i]), SCREEN_WIDTH/numbars, (scaled_freqs[i])))
         pygame.display.flip()
-        #FPSCLOCK.tick(FPS)
 
         prev_freqmat = scaled_freqs
 
